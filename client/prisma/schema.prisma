@@ -1,14 +1,8 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
-
+ 
 generator client {
   provider = "prisma-client-js"
 }
@@ -16,10 +10,9 @@ generator client {
 model User {
   id            String          @id @default(cuid())
   name          String?
-  email         String          @unique
+  email         String?          @unique
   emailVerified DateTime?
   image         String?
-  password String?
   accounts      Account[]
   sessions      Session[]
   // Optional for WebAuthn support
@@ -28,7 +21,7 @@ model User {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
+ 
 model Account {
   userId            String
   type              String
@@ -55,11 +48,19 @@ model Session {
   userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
+ 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
+ 
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+ 
+  @@id([identifier, token])
+}
+ 
 // Optional for WebAuthn support
 model Authenticator {
   credentialID         String  @unique
@@ -75,5 +76,3 @@ model Authenticator {
  
   @@id([userId, credentialID])
 }
-
-

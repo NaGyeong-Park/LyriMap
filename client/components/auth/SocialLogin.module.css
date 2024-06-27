@@ -1,0 +1,45 @@
+.wrappper {
+  width: 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+}
+.button {
+  width: 100%;
+  background: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  font-size: medium;
+  /* font-weight: bolder; */
+  padding: 8px 20px;
+}
+
+.google {
+  border: 1.5px solid rgb(255, 77, 77);
+  border-radius: 8px;
+  background-color: rgb(255, 77, 77);
+  color: white;
+}
+
+.google img {
+  width: 20px;
+  height: 20px;
+  margin: 10px;
+}
+
+.naver {
+  border: 1.5px solid #03c75a;
+  border-radius: 8px;
+  background-color: #03c75a;
+  color: white;
+}
+
+.kakao {
+  border: 1px solid #fee500;
+  border-radius: 8px;
+  background-color: #fee500;
+  color: #000000;
+}
